@@ -11,12 +11,12 @@ import com.example.inspiringpersons.databinding.ActivityInspiringPersonsListBind
 class InspiringPersonsListActivity : AppCompatActivity() {
 
     private lateinit var inspiringPersonsBinding : ActivityInspiringPersonsListBinding
-    private val inspiringPersons = InspiringPersonsRepository
+    private var adapter = InspiringPersonsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inspiringPersonsBinding = ActivityInspiringPersonsListBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_inspiring_persons_list)
+        setContentView(inspiringPersonsBinding.root)
         setupRecycler()
 
 
@@ -25,8 +25,10 @@ class InspiringPersonsListActivity : AppCompatActivity() {
 
     private fun setupRecycler() {
         inspiringPersonsBinding.rvInspiringPersons.layoutManager= LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        inspiringPersonsBinding.rvInspiringPersons.adapter=InspiringPersonsAdapter(inspiringPersons.getInspiringPersons())
-        inspiringPersons.insert(InspiringPerson("per","hghahga","111","gasa", listOf("aa","aa","asggsa")))
+        inspiringPersonsBinding.rvInspiringPersons.adapter=adapter
+        adapter.update(InspiringPersonsRepository.getInspiringPersons())
+
+
     }
 
 

@@ -3,23 +3,24 @@ package com.example.inspiringpersons
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inspiringpersons.databinding.ItemInspiringPersonBinding
 
-class InspiringPersonsAdapter(inspiringPerson: List<InspiringPerson>) : RecyclerView.Adapter<PersonsViewHolder>() {
+class InspiringPersonsAdapter : RecyclerView.Adapter<PersonsViewHolder>() {
     private val  inspiringPersons: MutableList<InspiringPerson> = mutableListOf()
     init{
         update(inspiringPersons)
     }
 
-    private fun update(inspiringPersons : List<InspiringPerson>) {
+     fun update(inspiringPersons : List<InspiringPerson>) {
         this.inspiringPersons.clear()
         this.inspiringPersons.addAll(inspiringPersons)
         this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonsViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_inspiring_person, parent, false)
-        return PersonsViewHolder(view)
+        val inflater=LayoutInflater.from(parent.context)
+        val itemInspiringPersonBinding=ItemInspiringPersonBinding.inflate(inflater)
+        return PersonsViewHolder(itemInspiringPersonBinding)
     }
 
     override fun onBindViewHolder(holder: PersonsViewHolder, position: Int) {

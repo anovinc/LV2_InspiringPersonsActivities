@@ -6,17 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inspiringpersons.InspiringPerson
 import com.example.inspiringpersons.databinding.ItemInspiringPersonBinding
 
-class PersonsViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+class PersonsViewHolder(private val binding: ItemInspiringPersonBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(inspiringPerson: InspiringPerson){
-        val itemBinding= ItemInspiringPersonBinding.bind(itemView)
-        itemBinding.tvNameInspiringPerson.text=inspiringPerson.name
-        itemBinding.tvLifetimeInspiringPerson.text=inspiringPerson.lifetime
-        itemBinding.tvDetailsInspiringPerson.text=inspiringPerson.details
+        binding.tvNameInspiringPerson.text=inspiringPerson.name
+        binding.tvLifetimeInspiringPerson.text=inspiringPerson.lifetime
+        binding.tvDetailsInspiringPerson.text=inspiringPerson.details
 
         Picasso.get()
             .load(inspiringPerson.picture)
             .fit()
-            .into(itemBinding.ivInspiringPerson)
+            .into(binding.ivInspiringPerson)
     }
 }
