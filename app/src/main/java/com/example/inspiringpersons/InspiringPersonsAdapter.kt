@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inspiringpersons.databinding.ItemInspiringPersonBinding
 
-class InspiringPersonsAdapter : RecyclerView.Adapter<PersonsViewHolder>() {
+class InspiringPersonsAdapter() : RecyclerView.Adapter<PersonsViewHolder>() {
     private val  inspiringPersons: MutableList<InspiringPerson> = mutableListOf()
     init{
         update(inspiringPersons)
@@ -19,7 +19,7 @@ class InspiringPersonsAdapter : RecyclerView.Adapter<PersonsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonsViewHolder {
         val inflater=LayoutInflater.from(parent.context)
-        val itemInspiringPersonBinding=ItemInspiringPersonBinding.inflate(inflater)
+        val itemInspiringPersonBinding=ItemInspiringPersonBinding.inflate(inflater,parent,false)
         return PersonsViewHolder(itemInspiringPersonBinding)
     }
 

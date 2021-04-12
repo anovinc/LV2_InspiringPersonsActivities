@@ -1,12 +1,15 @@
 package com.example.inspiringpersons
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inspiringpersons.databinding.ActivityInspiringPersonsListBinding
+import java.io.Console
 
 class InspiringPersonsListActivity : AppCompatActivity() {
 
@@ -18,6 +21,7 @@ class InspiringPersonsListActivity : AppCompatActivity() {
         inspiringPersonsBinding = ActivityInspiringPersonsListBinding.inflate(layoutInflater)
         setContentView(inspiringPersonsBinding.root)
         setupRecycler()
+        addNewPerson()
 
 
     }
@@ -28,8 +32,16 @@ class InspiringPersonsListActivity : AppCompatActivity() {
         inspiringPersonsBinding.rvInspiringPersons.adapter=adapter
         adapter.update(InspiringPersonsRepository.getInspiringPersons())
 
-
     }
+
+    private fun addNewPerson(){
+        inspiringPersonsBinding.btnNewInspiringPerson.setOnClickListener{
+            val intent=Intent(this,NewInspiringPersonActivity::class.java).apply {  }
+            startActivity(intent)
+        }
+    }
+
+
 
 
 }
