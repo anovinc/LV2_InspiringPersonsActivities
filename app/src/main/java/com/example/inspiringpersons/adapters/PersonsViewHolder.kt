@@ -1,9 +1,8 @@
-package com.example.inspiringpersons
+package com.example.inspiringpersons.adapters
 
-import android.view.View
 import com.squareup.picasso.Picasso
 import androidx.recyclerview.widget.RecyclerView
-import com.example.inspiringpersons.InspiringPerson
+import com.example.inspiringpersons.model.InspiringPerson
 import com.example.inspiringpersons.databinding.ItemInspiringPersonBinding
 
 class PersonsViewHolder(private val binding: ItemInspiringPersonBinding) : RecyclerView.ViewHolder(binding.root) {

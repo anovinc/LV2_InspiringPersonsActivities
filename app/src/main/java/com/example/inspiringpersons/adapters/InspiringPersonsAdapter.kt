@@ -1,11 +1,13 @@
-package com.example.inspiringpersons
+package com.example.inspiringpersons.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inspiringpersons.model.InspiringPerson
 import com.example.inspiringpersons.databinding.ItemInspiringPersonBinding
+import com.example.inspiringpersons.listeners.OnInspiringPersonSelected
 
-class InspiringPersonsAdapter() : RecyclerView.Adapter<PersonsViewHolder>() {
+class InspiringPersonsAdapter(private val listener: OnInspiringPersonSelected) : RecyclerView.Adapter<PersonsViewHolder>() {
     private val  inspiringPersons: MutableList<InspiringPerson> = mutableListOf()
     init{
         update(inspiringPersons)
@@ -26,6 +28,7 @@ class InspiringPersonsAdapter() : RecyclerView.Adapter<PersonsViewHolder>() {
     override fun onBindViewHolder(holder: PersonsViewHolder, position: Int) {
         val person = inspiringPersons[position]
         holder.bind(person)
+        holder.itemView.setOnClickListener{listener.OnInspiringPersonClicked(person)}
         }
 
 

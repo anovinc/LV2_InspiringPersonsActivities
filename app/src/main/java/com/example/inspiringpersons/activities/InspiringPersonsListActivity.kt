@@ -1,28 +1,27 @@
-package com.example.inspiringpersons
+package com.example.inspiringpersons.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.inspiringpersons.data.InspiringPersonsRepository
+import com.example.inspiringpersons.adapters.InspiringPersonsAdapter
 import com.example.inspiringpersons.databinding.ActivityInspiringPersonsListBinding
-import java.io.Console
+import com.example.inspiringpersons.listeners.OnInspiringPersonSelected
+import com.example.inspiringpersons.model.InspiringPerson
 
-class InspiringPersonsListActivity : AppCompatActivity() {
+class InspiringPersonsListActivity : AppCompatActivity() , OnInspiringPersonSelected{
 
     private lateinit var inspiringPersonsBinding : ActivityInspiringPersonsListBinding
-    private var adapter = InspiringPersonsAdapter()
+    private lateinit var listener:OnInspiringPersonSelected
+    private var adapter = InspiringPersonsAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inspiringPersonsBinding = ActivityInspiringPersonsListBinding.inflate(layoutInflater)
         setContentView(inspiringPersonsBinding.root)
         setupRecycler()
-        addNewPerson()
-
 
     }
 
@@ -31,17 +30,22 @@ class InspiringPersonsListActivity : AppCompatActivity() {
         inspiringPersonsBinding.rvInspiringPersons.layoutManager= LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         inspiringPersonsBinding.rvInspiringPersons.adapter=adapter
         adapter.update(InspiringPersonsRepository.getInspiringPersons())
+        addNewPerson()
 
     }
 
     private fun addNewPerson(){
         inspiringPersonsBinding.btnNewInspiringPerson.setOnClickListener{
-            val intent=Intent(this,NewInspiringPersonActivity::class.java).apply {  }
+            val intent=Intent(this, NewInspiringPersonActivity::class.java).apply {  }
             startActivity(intent)
         }
     }
 
+    override fun OnInspiringPersonClicked(inspiringPerson: InspiringPerson) {
+        var random="\""+inspiringPerson.quotes.random().toString()+"\" - "+inspiringPerson.name.toString()
+        Toast.makeText(this,random,Toast.LENGTH_LONG).show()
 
+    }
 
 
 }

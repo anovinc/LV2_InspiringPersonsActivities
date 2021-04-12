@@ -1,4 +1,4 @@
-package com.example.inspiringpersons
+package com.example.inspiringpersons.model
 
 import android.media.Image
 import java.io.Serializable

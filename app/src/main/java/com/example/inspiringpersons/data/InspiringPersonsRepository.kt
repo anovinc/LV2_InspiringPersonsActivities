@@ -1,6 +1,8 @@
-package com.example.inspiringpersons
+package com.example.inspiringpersons.data
 
- object InspiringPersonsRepository {
+import com.example.inspiringpersons.model.InspiringPerson
+
+object InspiringPersonsRepository {
 
      private val inspiringPersons= mutableListOf(
          InspiringPerson(
@@ -11,13 +13,13 @@ package com.example.inspiringpersons
              ,
              listOf( "That brain of mine is something more than merely mortal; as time will show.",
                  "The more I study, the more insatiable do I feel my genius for it to be.”",
-                 "Religion to me is science, and science to me is religion. ")
+                 "Religion to me is science, and science to me is religion.")
          ),
          InspiringPerson(
              "Larry Page",
              "https://specials-images.forbesimg.com/imageserve/5de7d8c0b269e900075d5ecb/960x0.jpg?fit=scale",
-             "1973 -",
-             "While studying in California, Larry Page co-founded Google as a research project and, with the help of Sergey Brin",
+             "1973. -",
+             "While studying in California, Larry Page co-founded Google as a research project with the help of Sergey Brin",
              listOf( "Always deliver more than expected.",
                  "If you’re not some things that are crazy, then you’re doing the wrong things.",
                  "It’s very hard to fail completely if you aim high enough.")
@@ -25,7 +27,7 @@ package com.example.inspiringpersons
          InspiringPerson(
              "Steve Jobs",
              "https://poslovnipuls.com/wp-content/uploads/2018/09/steve-jobs.jpg",
-             "1955 - 2011",
+             "1955. - 2011.",
              "Founder of Apple, famous company that is responisble for IPhone, Mac, IPad, IPod.",
              listOf(
                  "Don’t let the noise of others’ opinions drown out your own inner voice.",
@@ -36,13 +38,6 @@ package com.example.inspiringpersons
      )
      fun getInspiringPersons():List<InspiringPerson> = inspiringPersons
      fun insert(person: InspiringPerson) = inspiringPersons.add(person)
-     fun getInspiringPerson(name : String): InspiringPerson = inspiringPersons.first { it -> it.name == name }
-
-
-
-
-
-
 
 
  }
